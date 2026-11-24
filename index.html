@@ -60,11 +60,11 @@
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a data-scroll class="nav-link text-white optmenu" aria-current="page"
-                            href="indexP.html">Inicio</a>
+                            href="index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a data-scroll class="nav-link text-white optmenu" aria-current="page"
-                            href="https://icumed-my.sharepoint.com/:x:/r/personal/joshua_nunez_icumed_com/Documents/ICU%20Tools/Excel%20Tools/Chamber%20Profile%20Library.xlsx?d=w2446ea599f5c4a8c87e957244ec462f2&csf=1&web=1&e=6gtVhQ">Chamber</a>
+                            href="profile.html">Chamber</a>
                     </li>
                     <!-- submenu -->
                     <li class="nav-item">
@@ -76,9 +76,15 @@
                         <a data-scroll class="nav-link text-white optmenu" aria-current="page"
                             href="https://icumed-my.sharepoint.com/:x:/p/joshua_nunez/IQC926JlfgjDS7YaKZEFddzfAUtJEeb31C_Q17jji6ocE10?email=kendy.miranda%40icumed.com&e=Qi9Rte">Performance</a>
                     </li>
-                    <li class="nav-item">
-                        <a data-scroll class="nav-link text-white optmenu" aria-current="page"
-                            href="">Soon</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white optmenu" href="#" id="desplegable1" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More
+                        </a>
+                        <div class="dropdown-menu text-left" aria-labelledby="desplegable1">
+                            <a class="dropdown-item optmenu" href="https://icumed-my.sharepoint.com/:x:/r/personal/joshua_nunez_icumed_com/Documents/ICU%20Tools/Excel%20Tools/Analisys%20Template%20Plots%20(Rate%20Instantaneous%20-%20Mass%20vs%20Time).xlsx?d=w50d420ad5a174cac88cb329075dbb056&csf=1&web=1&e=DYpTK0">Instantaneous</a>
+                            <a class="dropdown-item optmenu" href="https://icumed-my.sharepoint.com/:x:/r/personal/joshua_nunez_icumed_com/Documents/ICU%20Tools/Excel%20Tools/AAMI%20TIR101%20CADD%20Data%20Analysis%20Spreadsheet%20High%20Volume%20Set%20(21-7365-24)%20Any%20Condition%20Any%20Rate%20mL-hr%20Summary%20Results.xlsx?d=w33476933652d4176961caa030ae64098&csf=1&web=1&e=xfMaSw">Spreadsheet</a>
+                            <a class="dropdown-item optmenu" href="">T12 Excel</a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -110,9 +116,7 @@
                     </p>
                 </div>
                 <div class="col-sm-5 col-md-6 col-lg-5 order-md-2 d-flex align-items-center">
-                    <a
-                        href="https://icumed-my.sharepoint.com/:x:/r/personal/joshua_nunez_icumed_com/Documents/ICU%20Tools/Excel%20Tools/Chamber%20Profile%20Library.xlsx?d=w2446ea599f5c4a8c87e957244ec462f2&csf=1&web=1&e=6gtVhQ"><img
-                            src="img/ChamberArea.jpg" alt="foto1" class="img-fluid" /></a>
+                    <a href="profile.html"><img src="img/ChamberArea.jpg" alt="foto1" class="img-fluid" /></a>
                 </div>
             </div>
 
@@ -164,17 +168,20 @@
             <div class="row">
                 <div class="col-sm-7 col-md-6 col-lg-7 order-md-2">
                     <h2 class="servEsp pt-5" data-aos="fade-in" data-aos-delay="400" data-aos-easing="ease-in-out"
-                        data-aos-once="true"><strong>Under Development</strong></h2>
+                        data-aos-once="true"><strong>Instantaneous Rate</strong></h2>
                     <p class="pt-3 pServ">
-                        This section is currently under development and will host future tools, resources, and automated
-                        solutions designed to support System Verification activities. Upcoming features may include test
-                        data analysis utilities, engineering calculators, reporting tools, process improvement
-                        resources, and other applications aimed at increasing efficiency, consistency, and data-driven
-                        decision making within the R&D verification environment.
+                        The Instantaneous Rate Analysis tool evaluates delivery performance by calculating the flow rate
+                        between consecutive mass measurements throughout a test. This method provides greater visibility
+                        into short-term delivery variations than average flow calculations alone. The analysis helps
+                        identify startup effects, flow instability, transient spikes, and rate fluctuations, allowing
+                        engineers to better understand pump behavior and verify performance during System Verification
+                        and PVT activities.
                     </p>
                 </div>
                 <div class="col-sm-5 col-md-6 col-lg-5 order-md-1 d-flex align-items-center">
-                    <img src="img/Soon.png" alt="foto2" class="img-fluid" />
+                    <a href="https://icumed-my.sharepoint.com/:x:/r/personal/joshua_nunez_icumed_com/Documents/ICU%20Tools/Excel%20Tools/Analisys%20Template%20Plots%20(Rate%20Instantaneous%20-%20Mass%20vs%20Time).xlsx?d=w50d420ad5a174cac88cb329075dbb056&csf=1&web=1&e=1TMclu">
+                        <img src="img/Instantaneous.png" alt="foto2" class="img-fluid" />
+                    </a>
                 </div>
             </div>
         </div>
@@ -182,7 +189,55 @@
     </section>
 
 
+    <!-- Clip-Path -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160">
+        <path fill="#B7C9D6" fill-opacity="1"
+            d="M0,144L80,133.35C160,122.5,320,101.5,480,88C640,74.5,800,69.5,960,80C1120,90.5,1280,117.5,1360,130.65L1440,144L1440,160L1360,160C1280,160,1120,160,960,160C800,160,640,160,480,160C320,160,160,160,80,160L0,160Z">
+        </path>
+    </svg>
+    <!-- Footer - Final de la Página -->
+    <footer>
+        <div class="row">
+            <div class="col-md-12 col-lg-4 text-center">
+                <h4 class="text-black mov">Descarga para móvil</h4>
+                <a href="https://play.google.com/store/apps?hl=es&gl=US">
+                    <img src="img/playS.svg" alt="foto2" class="img-fluid desc esp" />
+                </a>
+                <a href="https://www.apple.com/la/app-store/">
+                    <img src="img/appS.svg" alt="foto2" class="img-fluid desc" />
+                </a>
+            </div>
 
+            <div class="col-md-12 col-lg-4 text-center">
+                <h4 class="text-black mov">R&D Tools Library</h4>
+                <p>Sobre nosotros</p>
+                <p>Asistencia</p>
+                <p>Empleo</p>
+            </div>
+
+            <div class="col-md-12 col-lg-4 text-center">
+                <h4 class="text-black mov">Redes Sociales</h4>
+                <div class="text-center">
+                    <a href="https://walink.co/2d6da4" class="btn btn-success" target="blank"><i
+                            class="uil uil-whatsapp"></i>Whatsapp</a>
+                </div>
+                <div class="text-center pt-2">
+                    <a href="https://www.facebook.com/ICUMedical/" class="btn btn-primary" target="blank"><i
+                            class="uil uil-facebook"></i>Facebook</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12 text-center pt-5 derechos">
+                <p>
+                    © 2026 – 2026 R&D Tools Library. Creada por Joshua Núñez R.
+                </p>
+            </div>
+        </div>
+
+    </footer>
+    <!-- -------------------------------------------------------------------------------------------------------------------------- -->
 
 
     <a data-scroll id="flechabtn" class="goto-top" href="#inicio" title="Ir al inicio" onclick="topFunction()">

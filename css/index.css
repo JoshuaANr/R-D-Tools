@@ -128,3 +128,51 @@
     width: 75px;
     height: 50px;
 }
+
+
+/* ----------------  Footer - Info Final  ----------------*/
+
+footer {
+    background-color: #B7C9D6; /*#d6dbe3*/
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /*border-top-left-radius: 20px;
+    border-top-right-radius: 20px;*/
+}
+
+.mov {
+    font-weight: bolder;
+    padding-bottom: 10px;
+}
+
+.esp {
+    margin-right: 20px;
+}
+
+.desc {
+    width: 140px;
+    min-height: 100px;
+}
+
+.insta {
+    background: linear-gradient(to right, #405de6, #5851db, #833ab4);
+    border: none;
+    color: white;
+}
+
+.derechos {
+    font-weight: bolder;
+}
+
+i {
+    font-size: 25px;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* ----------------  ------------------------------------------------------------------------------  ----------------*/
+
