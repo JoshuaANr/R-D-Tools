@@ -1,16 +1,35 @@
-function toggleProfile(button){
+const triggers = document.querySelectorAll(".mega-trigger");
 
-    const profile =
-        button.parentElement.querySelector('.full-profile');
+triggers.forEach(trigger => {
 
-    profile.classList.toggle('active');
+  let timeout;
 
-    if(profile.classList.contains('active')){
+  trigger.addEventListener("mouseenter", () => {
 
-        button.textContent = 'HIDE PROFILE ▲';
+    clearTimeout(timeout);
 
-    }else{
+    const menu = trigger.querySelector(".mega-menu");
 
-        button.textContent = 'VIEW PROFILE ▼';
-    }
-}
+    menu.style.visibility = "visible";
+    menu.style.opacity = "1";
+    menu.style.transform = "translateY(0px)";
+  });
+
+  trigger.addEventListener("mouseleave", () => {
+
+    const menu = trigger.querySelector(".mega-menu");
+
+    timeout = setTimeout(() => {
+
+      menu.style.opacity = "0";
+      menu.style.transform = "translateY(-12px)";
+
+      setTimeout(() => {
+        menu.style.visibility = "hidden";
+      }, 300);
+
+    }, 150);
+
+  });
+
+});
