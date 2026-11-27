@@ -63,9 +63,9 @@
                 <span>Calculate delivery error.</span>
               </a>
 
-              <a href="#" class="mega-link">
-                More Resources
-                <span>More tools coming soon.</span>
+              <a href="informationTools.html#sample-analyzer" class="mega-link">
+                Sample Impact Analyzer
+                <span>Detect statistical outliers and evaluate sample impact.</span>
               </a>
 
             </div>
@@ -412,6 +412,599 @@
 
             </div>
         </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     SAMPLE IMPACT ANALYZER
+===================================================== -->
+
+<section class="sample-analyzer" id="sample-analyzer">
+
+    <div class="analyzer-heading">
+
+        <span class="analyzer-label">
+            STATISTICAL ANALYSIS TOOL
+        </span>
+
+        <div class="analyzer-heading-row">
+
+            <div>
+                <h2>Sample Impact Analyzer</h2>
+
+                <p>
+                    Identify atypical measurements, evaluate their statistical
+                    influence, and compare the dataset before adding a new sample.
+                </p>
+            </div>
+
+            <div class="analysis-mode-switch" role="group" aria-label="Analysis type">
+
+                <button
+                    type="button"
+                    class="analysis-mode-button active"
+                    data-analysis-mode="bolus"
+                >
+                    <span class="mode-icon">B</span>
+
+                    <span>
+                        <strong>Bolus Delivery</strong>
+                        <small>Weight analysis</small>
+                    </span>
+                </button>
+
+                <button
+                    type="button"
+                    class="analysis-mode-button"
+                    data-analysis-mode="occlusion"
+                >
+                    <span class="mode-icon">O</span>
+
+                    <span>
+                        <strong>Occlusion Time</strong>
+                        <small>HH:MM:SS analysis</small>
+                    </span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="analyzer-workspace">
+
+        <!-- INPUT PANEL -->
+
+        <div class="analyzer-input-panel">
+
+            <div class="analyzer-panel-header">
+
+                <div>
+                    <span class="panel-number">01</span>
+                    <h3 id="datasetTitle">Bolus Dataset</h3>
+                </div>
+
+                <span class="saved-indicator" id="savedIndicator">
+                    Saved locally
+                </span>
+
+            </div>
+
+            <div class="dataset-controls">
+
+                <div class="analyzer-field">
+
+                    <label for="datasetName">Dataset name</label>
+
+                    <input
+                        type="text"
+                        id="datasetName"
+                        placeholder="Example: Pump Group A"
+                        maxlength="80"
+                    >
+
+                </div>
+
+                <div class="analyzer-field" id="precisionField">
+
+                    <label for="decimalPrecision">Displayed decimal places</label>
+
+                    <select id="decimalPrecision">
+                        <option value="1">1 decimal</option>
+                        <option value="2">2 decimals</option>
+                        <option value="3" selected>3 decimals</option>
+                        <option value="4">4 decimals</option>
+                        <option value="5">5 decimals</option>
+                        <option value="6">6 decimals</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="analyzer-field dataset-field">
+
+                <div class="field-label-row">
+
+                    <div>
+                        <label for="historicalData">Dataset values</label>
+
+                        <span id="formatHelper">
+                            Enter one bolus weight per line. Up to 6 decimals are accepted.
+                        </span>
+                    </div>
+
+                    <span class="sample-counter">
+                        <strong id="validSampleCount">0</strong>
+                        valid samples
+                    </span>
+
+                </div>
+
+                <textarea
+                    id="historicalData"
+                    rows="14"
+                    spellcheck="false"
+                    placeholder="5.001245&#10;5.008562&#10;4.995830&#10;5.002451"
+                ></textarea>
+
+                <div class="input-error" id="datasetError"></div>
+
+            </div>
+
+            <div class="input-action-row">
+
+                <button
+                    type="button"
+                    class="analyzer-secondary-button"
+                    id="loadExampleButton"
+                >
+                    Load example
+                </button>
+
+                <button
+                    type="button"
+                    class="analyzer-secondary-button danger-button"
+                    id="clearDatasetButton"
+                >
+                    Clear
+                </button>
+
+                <button
+                    type="button"
+                    class="analyzer-primary-button"
+                    id="analyzeDatasetButton"
+                >
+                    Analyze dataset
+                </button>
+
+            </div>
+
+            <div class="data-guidance">
+
+                <strong>Recommended dataset</strong>
+
+                <p>
+                    Use measurements produced under comparable test conditions.
+                    A minimum of 8 values is required. Twenty or more values provide
+                    a more useful assessment, while 30 or more are preferred.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- RESULTS PANEL -->
+
+        <div class="analyzer-results-panel">
+
+            <div class="analyzer-panel-header">
+
+                <div>
+                    <span class="panel-number">02</span>
+                    <h3>Dataset Assessment</h3>
+                </div>
+
+                <span class="overall-status neutral" id="overallStatus">
+                    Waiting for data
+                </span>
+
+            </div>
+
+            <div class="empty-analysis" id="emptyAnalysis">
+
+                <div class="empty-analysis-icon">∿</div>
+
+                <h4>No analysis generated</h4>
+
+                <p>
+                    Enter your measurements and select
+                    <strong>Analyze dataset</strong>.
+                </p>
+
+            </div>
+
+            <div class="analysis-results hidden" id="analysisResults">
+
+                <!-- WARNING MESSAGE -->
+
+                <div class="analysis-alert low" id="primaryAlert">
+
+                    <div class="alert-symbol" id="primaryAlertSymbol">✓</div>
+
+                    <div>
+                        <h4 id="primaryAlertTitle">
+                            Dataset appears consistent.
+                        </h4>
+
+                        <p id="primaryAlertText">
+                            No strongly atypical measurements were detected.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- SUMMARY CARDS -->
+
+                <div class="summary-grid">
+
+                    <article class="summary-card">
+                        <span>Sample size</span>
+                        <strong id="summarySampleSize">0</strong>
+                        <small>Valid observations</small>
+                    </article>
+
+                    <article class="summary-card">
+                        <span>Historical mean</span>
+                        <strong id="summaryMean">—</strong>
+                        <small id="summaryMeanUnit">Weight</small>
+                    </article>
+
+                    <article class="summary-card">
+                        <span>Standard deviation</span>
+                        <strong id="summaryStdDev">—</strong>
+                        <small id="summaryStdDevUnit">Weight variation</small>
+                    </article>
+
+                    <article class="summary-card">
+                        <span>Potential outliers</span>
+                        <strong id="summaryOutliers">0</strong>
+                        <small>Flagged observations</small>
+                    </article>
+
+                    <article class="summary-card">
+                        <span>Dataset range</span>
+                        <strong id="summaryRange">—</strong>
+                        <small>Minimum to maximum</small>
+                    </article>
+
+                    <article class="summary-card">
+                        <span>Risk level</span>
+                        <strong id="summaryRisk">LOW</strong>
+                        <small>Statistical influence</small>
+                    </article>
+
+                </div>
+
+                <!-- VISUAL DISTRIBUTION -->
+
+                <div class="distribution-card">
+
+                    <div class="card-title-row">
+
+                        <div>
+                            <span class="card-eyebrow">VISUAL DISTRIBUTION</span>
+                            <h4>Measurement Spread</h4>
+                        </div>
+
+                        <div class="chart-legend">
+                            <span>
+                                <i class="legend-dot standard-dot"></i>
+                                Standard
+                            </span>
+
+                            <span>
+                                <i class="legend-dot warning-dot"></i>
+                                Flagged
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="distribution-chart" id="distributionChart"></div>
+
+                    <div class="chart-axis">
+
+                        <span id="axisMinimum">Minimum</span>
+                        <span id="axisMedian">Median</span>
+                        <span id="axisMaximum">Maximum</span>
+
+                    </div>
+
+                </div>
+
+                <!-- FLAGGED SAMPLES -->
+
+                <div class="flagged-card">
+
+                    <div class="card-title-row">
+
+                        <div>
+                            <span class="card-eyebrow">OBSERVATION REVIEW</span>
+                            <h4>Potentially Influential Samples</h4>
+                        </div>
+
+                        <span class="review-count" id="reviewCount">
+                            0 flagged
+                        </span>
+
+                    </div>
+
+                    <div class="flagged-list" id="flaggedSamplesList"></div>
+
+                </div>
+
+                <!-- DATASET HEALTH -->
+
+                <div class="dataset-health">
+
+                    <div>
+
+                        <span class="card-eyebrow">DATASET HEALTH</span>
+
+                        <h4 id="datasetHealthTitle">
+                            Stable dataset
+                        </h4>
+
+                        <p id="datasetHealthText">
+                            The current measurements show no strong evidence of
+                            unusually influential observations.
+                        </p>
+
+                    </div>
+
+                    <div class="health-meter">
+
+                        <div class="health-score-ring" id="healthScoreRing">
+                            <span id="healthScore">100</span>
+                            <small>/ 100</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+         NEW SAMPLE EVALUATION
+    ===================================================== -->
+
+    <div class="new-sample-section">
+
+        <div class="new-sample-heading">
+
+            <div>
+                <span class="panel-number">03</span>
+                <h3>Evaluate a New Sample</h3>
+
+                <p>
+                    Compare a new result with the saved dataset before adding it.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="new-sample-layout">
+
+            <div class="new-sample-input-card">
+
+                <div class="analyzer-field">
+
+                    <label for="newSampleValue" id="newSampleLabel">
+                        New bolus weight
+                    </label>
+
+                    <input
+                        type="text"
+                        id="newSampleValue"
+                        inputmode="decimal"
+                        placeholder="Example: 5.004582"
+                        autocomplete="off"
+                    >
+
+                    <span class="field-help" id="newSampleHelper">
+                        Enter a value with up to 6 decimal places.
+                    </span>
+
+                    <div class="input-error" id="newSampleError"></div>
+
+                </div>
+
+                <div class="new-sample-buttons">
+
+                    <button
+                        type="button"
+                        class="analyzer-primary-button"
+                        id="evaluateNewSampleButton"
+                    >
+                        Evaluate impact
+                    </button>
+
+                    <button
+                        type="button"
+                        class="analyzer-secondary-button"
+                        id="addNewSampleButton"
+                        disabled
+                    >
+                        Add to dataset
+                    </button>
+
+                </div>
+
+                <div class="sample-add-note">
+
+                    Adding a value does not mean the result is accepted or rejected.
+                    Confirm any exclusion using the applicable protocol and
+                    documented investigation process.
+
+                </div>
+
+            </div>
+
+            <div class="new-sample-result-card">
+
+                <div class="new-sample-empty" id="newSampleEmpty">
+
+                    <span>+</span>
+
+                    <p>
+                        Evaluate a new measurement to view its distance from the
+                        historical group and its potential effect.
+                    </p>
+
+                </div>
+
+                <div class="new-sample-results hidden" id="newSampleResults">
+
+                    <div class="sample-risk-header">
+
+                        <div>
+                            <span>Risk level</span>
+                            <strong id="newSampleRisk">LOW</strong>
+                        </div>
+
+                        <span class="sample-outlier-badge no" id="newSampleOutlier">
+                            Potential Outlier: NO
+                        </span>
+
+                    </div>
+
+                    <div class="new-sample-alert low" id="newSampleAlert">
+
+                        <strong id="newSampleAlertTitle">
+                            Sample is consistent with the historical dataset.
+                        </strong>
+
+                        <p id="newSampleAlertText">
+                            This result is within the expected historical variation.
+                        </p>
+
+                    </div>
+
+                    <div class="sample-metrics">
+
+                        <div>
+                            <span>Historical Mean</span>
+                            <strong id="newHistoricalMean">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Historical Std Dev</span>
+                            <strong id="newHistoricalStdDev">—</strong>
+                        </div>
+
+                        <div>
+                            <span>New Sample</span>
+                            <strong id="newSampleDisplay">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Distance From Mean</span>
+                            <strong id="newDistanceMean">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Z-Score</span>
+                            <strong id="newZScore">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Modified Z-Score</span>
+                            <strong id="newModifiedZScore">—</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="impact-comparison">
+
+                        <div class="comparison-column">
+
+                            <span>Historical dataset</span>
+
+                            <strong id="beforeMean">—</strong>
+
+                            <small id="beforeStatus">
+                                Baseline
+                            </small>
+
+                        </div>
+
+                        <div class="comparison-arrow">→</div>
+
+                        <div class="comparison-column">
+
+                            <span>After adding sample</span>
+
+                            <strong id="afterMean">—</strong>
+
+                            <small id="afterStatus">
+                                Predicted result
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="distribution-impact-message hidden" id="distributionImpactMessage">
+
+                        <strong>
+                            ⚠ Adding this sample may increase distribution risk.
+                        </strong>
+
+                        <p>
+                            The new observation materially increases variation or
+                            may affect downstream statistical analysis.
+                        </p>
+
+                    </div>
+
+                    <div class="recommendation-card">
+
+                        <span>RECOMMENDATION</span>
+
+                        <p id="newSampleRecommendation">
+                            Continue according to the applicable test procedure.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="analyzer-disclaimer">
+
+        <strong>Statistical screening only</strong>
+
+        <p>
+            This tool identifies unusual or potentially influential measurements.
+            It does not establish product acceptance, protocol compliance, or
+            justification for excluding data. Review flagged results against the
+            approved test method, acceptance criteria, raw data, equipment status,
+            and documented investigation requirements.
+        </p>
 
     </div>
 

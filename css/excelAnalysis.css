@@ -1,6 +1,6 @@
 :root{
 
---bg:#0e3a35;
+--bg:#0e3a35; /**/
 --card:#12423c;
 --border:rgba(255,255,255,.09);
 --text:#ffffff;
@@ -23,7 +23,7 @@ font-family:'Inter',sans-serif;
 background:
 radial-gradient(
 circle at top,
-#1d5c53 0%,
+#1d5c53 0%, /**/
 #0e3a35 35%
 );
 
